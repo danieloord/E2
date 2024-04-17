@@ -7,11 +7,13 @@ init 4
 
 cd /tmp
 
-wget -q "--no-check-certificate" https://enigma2.hswg.pl/wp-content/uploads/2024/04/Lista-bzyk83-hb-13E-15.04.2024.zip
+wget -q https://enigma2.hswg.pl/wp-content/uploads/2024/04/Lista-bzyk83-hb-13E-15.04.2024.zip
 if [ $? -gt 0 ] ;then
-[ $isPL -eq 1 ] && echo "błąd pobierania archiwum, koniec" || echo "error downloading archive, end"
-exit 1
-fi
+  wget -q "--no-check-certificate" https://enigma2.hswg.pl/wp-content/uploads/2024/04/Lista-bzyk83-hb-13E-15.04.2024.zip
+  if [ $? -gt 0 ] ;then
+    [ $isPL -eq 1 ] && echo "błąd pobierania archiwum, koniec" || echo "error downloading archive, end"
+    exit 1
+  fi
 else
 	[ $isPL -eq 1 ] && echo "Archiwum pobrane" || echo "Archive downloaded"
 fi
@@ -38,18 +40,18 @@ rm -f /etc/enigma2/*.tv
 rm -f /etc/enigma2/*.radio
 rm -f /etc/tuxbox/satellites.xml
 
-cp -f /tmp/Lista*bzyk83*/lamedb /etc/enigma2/
-cp -f /tmp/Lista*bzyk83*/blacklist /etc/enigma2/
-cp -f /tmp/Lista*bzyk83*/*.tv /etc/enigma2/
-cp -f /tmp/Lista*bzyk83*/*.radio /etc/enigma2/
-cp -f /tmp/Lista*bzyk83*/satellites.xml /etc/tuxbox/
+cp -f /tmp/Lista*/lamedb /etc/enigma2/
+cp -f /tmp/Lista*/blacklist /etc/enigma2/
+cp -f /tmp/Lista*/*.tv /etc/enigma2/
+cp -f /tmp/Lista*/*.radio /etc/enigma2/
+cp -f /tmp/Lista*/satellites.xml /etc/tuxbox/
 
 if [ $? -gt 0 ] ;then
 	[ $isPL -eq 1 ] && echo "błąd instalacji listy, koniec" || echo "error installing list, end"
 	exit 1
 else
 	[ $isPL -eq 1 ] && echo "Lista zainstalowana" || echo "Channellist installed"
-	rm -rf /tmp/Lista*bzyk83* >/dev/null 2>&1
+	rm -rf /tmp/Lista* >/dev/null 2>&1
 fi
 
 [ $isPL -eq 1 ] && echo "KONIEC. restartuje E2..." || echo "END. restarting E2..."
