@@ -5,6 +5,9 @@ init 4
 
 cd /tmp
 
+[ -e /tmp/Lista-bzyk83-hb-13E-15.04.2024.zip ] && rm -f /tmp/Lista-bzyk83-hb-13E-15.04.2024.zip
+[ -e /tmp/Lista bzyk83 hb 13E 15.04.2024 ] && rm -fr /tmp/Lista bzyk83 hb 13E 15.04.2024
+
 wget -q https://enigma2.hswg.pl/wp-content/uploads/2024/04/Lista-bzyk83-hb-13E-15.04.2024.zip
 if [ $? -gt 0 ] ;then
   wget -q "--no-check-certificate" https://enigma2.hswg.pl/wp-content/uploads/2024/04/Lista-bzyk83-hb-13E-15.04.2024.zip
