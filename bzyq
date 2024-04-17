@@ -11,8 +11,6 @@ wget -q https://enigma2.hswg.pl/wp-content/uploads/2024/04/Lista-bzyk83-hb-13E-1
 if [ $? -gt 0 ] ;then
    [ $isPL -eq 1 ] && echo "błąd pobierania archiwum, koniec" || echo "error downloading archive, end"
    exit 1
-fi
-
 else
 	[ $isPL -eq 1 ] && echo "Archiwum pobrane" || echo "Archive downloaded"
 fi
