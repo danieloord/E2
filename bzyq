@@ -32,8 +32,8 @@ echo "Archiwum rozpakowane"
 
 	rm -rf /etc/enigma2/lamedb >/dev/null 2>&1
 	rm -rf /etc/enigma2/blacklist >/dev/null 2>&1
-    rm -f /etc/enigma2/*.tv
-    rm -f /etc/enigma2/*.radio
+        rm -f /etc/enigma2/*.tv
+        rm -f /etc/enigma2/*.radio
 	rm -f /etc/tuxbox/satellites.xml
 
 mv -f /tmp/Lista bzyk83 hb 13E 15.04.2024/lamedb /etc/enigma2/
