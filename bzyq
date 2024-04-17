@@ -3,9 +3,7 @@
 
 [ `grep -c 'osd.language=pl_PL' </etc/enigma2/settings` -gt 0 ] && isPL=1 || isPL=0
 
-sleep 2
-init 4
-sleep 5
+init 4; sleep 5
 
 cd /tmp
 
@@ -19,7 +17,7 @@ if [ $? -gt 0 ] ;then
 else
 	[ $isPL -eq 1 ] && echo "Archiwum pobrane" || echo "Archive downloaded"
 fi
-unzip /tmp/Lista-bzyk83*.zip -d /tmp
+unzip /tmp/Lista-bzyk83*.zip -d /tmp >/dev/null 2>&1
 if [ $? -gt 0 ] ;then
 	[ $isPL -eq 1 ] && echo "błąd rozpakowania archiwum, koniec" || echo "error extracting archive, end"
 	exit 1
@@ -36,8 +34,8 @@ else
 	[ $isPL -eq 1 ] && echo "Wykryto system z python3" || echo "Found system using python3"
 fi
 
-rm -rf /etc/enigma2/lamedb
-rm -rf /etc/enigma2/blacklist
+rm -rf /etc/enigma2/lamedb >/dev/null 2>&1
+rm -rf /etc/enigma2/blacklist >/dev/null 2>&1
 rm -f /etc/enigma2/*.tv
 rm -f /etc/enigma2/*.radio
 rm -f /etc/tuxbox/satellites.xml
@@ -58,6 +56,6 @@ fi
 
 [ $isPL -eq 1 ] && echo "KONIEC. restartuje E2..." || echo "END. restarting E2..."
 
-sleep 5
-init 3
+sleep 5; init 3
 exit 0
+
