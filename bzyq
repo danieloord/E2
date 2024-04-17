@@ -17,7 +17,7 @@ if [ $? -gt 0 ] ;then
 else
 	[ $isPL -eq 1 ] && echo "Archiwum pobrane" || echo "Archive downloaded"
 fi
-unzip /tmp/Lista-bzyk83-hb-13E-15.04.2024.zip -d /tmp
+unzip /tmp/Lista-bzyk83-hb-13E-15.04.2024.zip >/dev/null 2>&1
 if [ $? -gt 0 ] ;then
 	[ $isPL -eq 1 ] && echo "błąd rozpakowania archiwum, koniec" || echo "error extracting archive, end"
 	exit 1
@@ -34,17 +34,17 @@ else
 	[ $isPL -eq 1 ] && echo "Wykryto system z python3" || echo "Found system using python3"
 fi
 
-rm -rf /etc/enigma2/lamedb >/dev/null 2>&1
-rm -rf /etc/enigma2/blacklist >/dev/null 2>&1
+rm -rf /etc/enigma2/lamedb
+rm -rf /etc/enigma2/blacklist
 rm -f /etc/enigma2/*.tv
 rm -f /etc/enigma2/*.radio
 rm -f /etc/tuxbox/satellites.xml
 
-mv -f /tmp/Lista bzyk83 hb 13E 15.04.2024/lamedb /etc/enigma2/
-mv -f /tmp/Lista bzyk83 hb 13E 15.04.2024/blacklist /etc/enigma2/
-mv -f /tmp/Lista bzyk83 hb 13E 15.04.2024/*.tv /etc/enigma2/
-mv -f /tmp/Lista bzyk83 hb 13E 15.04.2024/list/*.radio /etc/enigma2/
-mv -f /tmp/Lista bzyk83 hb 13E 15.04.2024/list/satellites.xml /etc/tuxbox/
+cp -f /tmp/Lista bzyk83 hb 13E 15.04.2024/lamedb /etc/enigma2/
+cp -f /tmp/Lista bzyk83 hb 13E 15.04.2024/blacklist /etc/enigma2/
+cp -f /tmp/Lista bzyk83 hb 13E 15.04.2024/*.tv /etc/enigma2/
+cp -f /tmp/Lista bzyk83 hb 13E 15.04.2024/list/*.radio /etc/enigma2/
+cp -f /tmp/Lista bzyk83 hb 13E 15.04.2024/list/satellites.xml /etc/tuxbox/
 
 if [ $? -gt 0 ] ;then
 	[ $isPL -eq 1 ] && echo "błąd instalacji listy, koniec" || echo "error installing list, end"
